@@ -1,0 +1,886 @@
+[tracee (lib)] The virtual address of insert_machine_code() is: 0x7f4728a32d67
+[tracer] connection from 127.0.0.1
+[tracer] the received address is: 0x7f4728a32d67
+sysbench 1.0.18 (using system LuaJIT 2.1.0-beta3)
+
+Initializing worker threads...
+
+Creating table 'sbtest1'...Creating table 'sbtest3'...
+
+Creating table 'sbtest4'...
+Creating table 'sbtest2'...
+Inserting 10000 records into 'sbtest2'
+Inserting 10000 records into 'sbtest3'
+Inserting 10000 records into 'sbtest1'
+Inserting 10000 records into 'sbtest4'
+Creating a secondary index on 'sbtest2'...
+Creating a secondary index on 'sbtest3'...
+Creating a secondary index on 'sbtest1'...
+Creating a secondary index on 'sbtest4'...
+Warning:
+PID/TID switch overriding SYSTEM
+[ perf record: Woken up 2865 times to write data ]
+[ perf record: Captured and wrote 731.511 MB /home/wlmu/ocolos-public/ocolos_data/perf.data (947187 samples) ]
+BOLT-INFO: shared object or position-independent executable detected
+PERF2BOLT: Starting data aggregation job for /home/wlmu/ocolos-public/ocolos_data/perf.data
+PERF2BOLT: spawning perf job to read branch events
+PERF2BOLT: spawning perf job to read mem events
+PERF2BOLT: spawning perf job to read process events
+PERF2BOLT: spawning perf job to read task events
+BOLT-INFO: Target architecture: x86_64
+BOLT-INFO: BOLT version: <unknown>
+BOLT-INFO: first alloc address is 0x0
+BOLT-INFO: creating new program header table at address 0x4c00000, offset 0x4c00000
+#### 4c00000
+#### 4c00000
+BOLT-INFO: enabling relocation mode
+BOLT-INFO: enabling strict relocation mode for aggregation purposes
+BOLT-WARNING: split function detected on input : _ZL26parse_replicate_rewrite_dbPPcS0_S_.cold/1. The support is limited in relocation mode.
+BOLT-INFO: pre-processing profile using perf data aggregator
+BOLT-INFO: binary build-id is:     0b76c62787b1bb7fe3405f93bce4c13709ec7868
+PERF2BOLT: spawning perf job to read buildid list
+PERF2BOLT: matched build-id and file name
+PERF2BOLT: waiting for perf mmap events collection to finish...
+PERF2BOLT: parsing perf-script mmap events output
+PERF2BOLT: waiting for perf task events collection to finish...
+PERF2BOLT: parsing perf-script task events output
+PERF2BOLT: input binary is associated with 1 PID(s)
+PERF2BOLT: waiting for perf events collection to finish...
+PERF2BOLT: parse branch events...
+PERF2BOLT: read 947187 samples and 30027301 LBR entries
+PERF2BOLT: 0 samples (0.0%) were ignored
+PERF2BOLT: traces mismatching disassembled function contents: 2 (0.0%)
+PERF2BOLT: out of range traces involving unknown regions: 5538504 (19.0%)
+BOLT-WARNING: Ignored 0 functions due to cold fragments.
+BOLT-INFO: forcing -jump-tables=move as PIC jump table was detected in function _Z20handle_std_exceptionPKc
+PERF2BOLT: processing branch events...
+PERF2BOLT: wrote 13683 objects and 0 memory objects to /home/wlmu/ocolos-public/ocolos_data/perf.fdata
+[tracer(time)] perf2bolt took 28.788767 seconds to execute 
+BOLT-WARNING: debug info will be stripped from the binary. Use -update-debug-sections to keep it.
+BOLT-WARNING: split function detected on input : _ZL26parse_replicate_rewrite_dbPPcS0_S_.cold/1. The support is limited in relocation mode.
+BOLT-WARNING: Ignored 0 functions due to cold fragments.
+[tracer] 1318 functions was moved (functions reordered) by BOLT
+[tracer(time)] llvm-bolt took 6.954559 seconds to execute 
+
+-------------call stack------------
+1469415
+[tracer] 0x7f472819399f : (__poll+0x4f) 
+                [sp=0x7fff6b691a90]
+[tracer] 0x562533a0b91b : (_ZN22Mysqld_socket_listener27listen_for_connection_eventEv+0x5b) 
+                [sp=0x7fff6b691ac0]
+[tracer] 0x5625337a2d79 : (_Z11mysqld_mainiPPc+0x3989) 
+                [sp=0x7fff6b691bb0]
+[tracer] 0x7f47280a5083 : (__libc_start_main+0xf3) 
+                [sp=0x7fff6b6926f0]
+[tracer] 0x7f4728a31439 : (__libc_start_main+0x79) 
+                [sp=0x7fff6b6927c0]
+[tracer] 0x562533780fae : (_start+0x2e) 
+                [sp=0x7fff6b692820]
+1469419
+[tracer] 0x7f472819973d : (syscall+0x1d) 
+                [sp=0x7f471a3735f8]
+[tracer] 0x7f47285f827b : (io_queue_run+0xcb) 
+                [sp=0x7f471a373600]
+[tracer] 0x562534d93e0d : (_ZN15LinuxAIOHandler7collectEv+0xdd) 
+                [sp=0x7f471a373650]
+[tracer] 0x562534d94782 : (_ZN15LinuxAIOHandler4pollEPP10fil_node_tPPvP9IORequest+0xf2) 
+                [sp=0x7f471a3738b0]
+[tracer] 0x562534d99176 : (_Z14os_aio_handlermPP10fil_node_tPPvP9IORequest+0xa6) 
+                [sp=0x7f471a373af0]
+[tracer] 0x56253506384a : (_Z12fil_aio_waitm+0x6a) 
+                [sp=0x7f471a373b60]
+[tracer] 0x562534e54a88 : (_ZL17io_handler_threadm+0x28) 
+                [sp=0x7f471a373c00]
+[tracer] 0x562534e54b98 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvmEmEEEEE6_M_runEv+0xc8) 
+                [sp=0x7f471a373c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f471a373ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f471a373d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f471a373dc0]
+1469420
+[tracer] 0x7f472819973d : (syscall+0x1d) 
+                [sp=0x7f47191095f8]
+[tracer] 0x7f47285f827b : (io_queue_run+0xcb) 
+                [sp=0x7f4719109600]
+[tracer] 0x562534d93e0d : (_ZN15LinuxAIOHandler7collectEv+0xdd) 
+                [sp=0x7f4719109650]
+[tracer] 0x562534d94782 : (_ZN15LinuxAIOHandler4pollEPP10fil_node_tPPvP9IORequest+0xf2) 
+                [sp=0x7f47191098b0]
+[tracer] 0x562534d99176 : (_Z14os_aio_handlermPP10fil_node_tPPvP9IORequest+0xa6) 
+                [sp=0x7f4719109af0]
+[tracer] 0x56253506384a : (_Z12fil_aio_waitm+0x6a) 
+                [sp=0x7f4719109b60]
+[tracer] 0x562534e54a88 : (_ZL17io_handler_threadm+0x28) 
+                [sp=0x7f4719109c00]
+[tracer] 0x562534e54b98 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvmEmEEEEE6_M_runEv+0xc8) 
+                [sp=0x7f4719109c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f4719109ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f4719109d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f4719109dc0]
+1469421
+[tracer] 0x7f472819973d : (syscall+0x1d) 
+                [sp=0x7f47189085f8]
+[tracer] 0x7f47285f827b : (io_queue_run+0xcb) 
+                [sp=0x7f4718908600]
+[tracer] 0x562534d93e0d : (_ZN15LinuxAIOHandler7collectEv+0xdd) 
+                [sp=0x7f4718908650]
+[tracer] 0x562534d94782 : (_ZN15LinuxAIOHandler4pollEPP10fil_node_tPPvP9IORequest+0xf2) 
+                [sp=0x7f47189088b0]
+[tracer] 0x562534d99176 : (_Z14os_aio_handlermPP10fil_node_tPPvP9IORequest+0xa6) 
+                [sp=0x7f4718908af0]
+[tracer] 0x56253506384a : (_Z12fil_aio_waitm+0x6a) 
+                [sp=0x7f4718908b60]
+[tracer] 0x562534e54a88 : (_ZL17io_handler_threadm+0x28) 
+                [sp=0x7f4718908c00]
+[tracer] 0x562534e54b98 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvmEmEEEEE6_M_runEv+0xc8) 
+                [sp=0x7f4718908c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f4718908ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f4718908d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f4718908dc0]
+1469422
+[tracer] 0x7f472819973d : (syscall+0x1d) 
+                [sp=0x7f4713ffe5f8]
+[tracer] 0x7f47285f827b : (io_queue_run+0xcb) 
+                [sp=0x7f4713ffe600]
+[tracer] 0x562534d93e0d : (_ZN15LinuxAIOHandler7collectEv+0xdd) 
+                [sp=0x7f4713ffe650]
+[tracer] 0x562534d94782 : (_ZN15LinuxAIOHandler4pollEPP10fil_node_tPPvP9IORequest+0xf2) 
+                [sp=0x7f4713ffe8b0]
+[tracer] 0x562534d99176 : (_Z14os_aio_handlermPP10fil_node_tPPvP9IORequest+0xa6) 
+                [sp=0x7f4713ffeaf0]
+[tracer] 0x56253506384a : (_Z12fil_aio_waitm+0x6a) 
+                [sp=0x7f4713ffeb60]
+[tracer] 0x562534e54a88 : (_ZL17io_handler_threadm+0x28) 
+                [sp=0x7f4713ffec00]
+[tracer] 0x562534e54b98 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvmEmEEEEE6_M_runEv+0xc8) 
+                [sp=0x7f4713ffec20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f4713ffece0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f4713ffed00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f4713ffedc0]
+1469423
+[tracer] 0x7f472819973d : (syscall+0x1d) 
+                [sp=0x7f47137fd5f8]
+[tracer] 0x7f47285f827b : (io_queue_run+0xcb) 
+                [sp=0x7f47137fd600]
+[tracer] 0x562534d93e0d : (_ZN15LinuxAIOHandler7collectEv+0xdd) 
+                [sp=0x7f47137fd650]
+[tracer] 0x562534d94782 : (_ZN15LinuxAIOHandler4pollEPP10fil_node_tPPvP9IORequest+0xf2) 
+                [sp=0x7f47137fd8b0]
+[tracer] 0x562534d99176 : (_Z14os_aio_handlermPP10fil_node_tPPvP9IORequest+0xa6) 
+                [sp=0x7f47137fdaf0]
+[tracer] 0x56253506384a : (_Z12fil_aio_waitm+0x6a) 
+                [sp=0x7f47137fdb60]
+[tracer] 0x562534e54a88 : (_ZL17io_handler_threadm+0x28) 
+                [sp=0x7f47137fdc00]
+[tracer] 0x562534e54b98 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvmEmEEEEE6_M_runEv+0xc8) 
+                [sp=0x7f47137fdc20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f47137fdce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f47137fdd00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f47137fddc0]
+1469424
+[tracer] 0x7f472819973d : (syscall+0x1d) 
+                [sp=0x7f4712ffc5f8]
+[tracer] 0x7f47285f827b : (io_queue_run+0xcb) 
+                [sp=0x7f4712ffc600]
+[tracer] 0x562534d93e0d : (_ZN15LinuxAIOHandler7collectEv+0xdd) 
+                [sp=0x7f4712ffc650]
+[tracer] 0x562534d94782 : (_ZN15LinuxAIOHandler4pollEPP10fil_node_tPPvP9IORequest+0xf2) 
+                [sp=0x7f4712ffc8b0]
+[tracer] 0x562534d99176 : (_Z14os_aio_handlermPP10fil_node_tPPvP9IORequest+0xa6) 
+                [sp=0x7f4712ffcaf0]
+[tracer] 0x56253506384a : (_Z12fil_aio_waitm+0x6a) 
+                [sp=0x7f4712ffcb60]
+[tracer] 0x562534e54a88 : (_ZL17io_handler_threadm+0x28) 
+                [sp=0x7f4712ffcc00]
+[tracer] 0x562534e54b98 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvmEmEEEEE6_M_runEv+0xc8) 
+                [sp=0x7f4712ffcc20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f4712ffcce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f4712ffcd00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f4712ffcdc0]
+1469425
+[tracer] 0x7f472819973d : (syscall+0x1d) 
+                [sp=0x7f47127fb5f8]
+[tracer] 0x7f47285f827b : (io_queue_run+0xcb) 
+                [sp=0x7f47127fb600]
+[tracer] 0x562534d93e0d : (_ZN15LinuxAIOHandler7collectEv+0xdd) 
+                [sp=0x7f47127fb650]
+[tracer] 0x562534d94782 : (_ZN15LinuxAIOHandler4pollEPP10fil_node_tPPvP9IORequest+0xf2) 
+                [sp=0x7f47127fb8b0]
+[tracer] 0x562534d99176 : (_Z14os_aio_handlermPP10fil_node_tPPvP9IORequest+0xa6) 
+                [sp=0x7f47127fbaf0]
+[tracer] 0x56253506384a : (_Z12fil_aio_waitm+0x6a) 
+                [sp=0x7f47127fbb60]
+[tracer] 0x562534e54a88 : (_ZL17io_handler_threadm+0x28) 
+                [sp=0x7f47127fbc00]
+[tracer] 0x562534e54b98 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvmEmEEEEE6_M_runEv+0xc8) 
+                [sp=0x7f47127fbc20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f47127fbce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f47127fbd00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f47127fbdc0]
+1469426
+[tracer] 0x7f472819973d : (syscall+0x1d) 
+                [sp=0x7f4711ffa5f8]
+[tracer] 0x7f47285f827b : (io_queue_run+0xcb) 
+                [sp=0x7f4711ffa600]
+[tracer] 0x562534d93e0d : (_ZN15LinuxAIOHandler7collectEv+0xdd) 
+                [sp=0x7f4711ffa650]
+[tracer] 0x562534d94782 : (_ZN15LinuxAIOHandler4pollEPP10fil_node_tPPvP9IORequest+0xf2) 
+                [sp=0x7f4711ffa8b0]
+[tracer] 0x562534d99176 : (_Z14os_aio_handlermPP10fil_node_tPPvP9IORequest+0xa6) 
+                [sp=0x7f4711ffaaf0]
+[tracer] 0x56253506384a : (_Z12fil_aio_waitm+0x6a) 
+                [sp=0x7f4711ffab60]
+[tracer] 0x562534e54a88 : (_ZL17io_handler_threadm+0x28) 
+                [sp=0x7f4711ffac00]
+[tracer] 0x562534e54b98 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvmEmEEEEE6_M_runEv+0xc8) 
+                [sp=0x7f4711ffac20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f4711fface0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f4711ffad00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f4711ffadc0]
+1469427
+[tracer] 0x7f472819973d : (syscall+0x1d) 
+                [sp=0x7f47117f95f8]
+[tracer] 0x7f47285f827b : (io_queue_run+0xcb) 
+                [sp=0x7f47117f9600]
+[tracer] 0x562534d93e0d : (_ZN15LinuxAIOHandler7collectEv+0xdd) 
+                [sp=0x7f47117f9650]
+[tracer] 0x562534d94782 : (_ZN15LinuxAIOHandler4pollEPP10fil_node_tPPvP9IORequest+0xf2) 
+                [sp=0x7f47117f98b0]
+[tracer] 0x562534d99176 : (_Z14os_aio_handlermPP10fil_node_tPPvP9IORequest+0xa6) 
+                [sp=0x7f47117f9af0]
+[tracer] 0x56253506384a : (_Z12fil_aio_waitm+0x6a) 
+                [sp=0x7f47117f9b60]
+[tracer] 0x562534e54a88 : (_ZL17io_handler_threadm+0x28) 
+                [sp=0x7f47117f9c00]
+[tracer] 0x562534e54b98 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvmEmEEEEE6_M_runEv+0xc8) 
+                [sp=0x7f47117f9c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f47117f9ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f47117f9d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f47117f9dc0]
+1469428
+[tracer] 0x7f472819973d : (syscall+0x1d) 
+                [sp=0x7f4710ff85f8]
+[tracer] 0x7f47285f827b : (io_queue_run+0xcb) 
+                [sp=0x7f4710ff8600]
+[tracer] 0x562534d93e0d : (_ZN15LinuxAIOHandler7collectEv+0xdd) 
+                [sp=0x7f4710ff8650]
+[tracer] 0x562534d94782 : (_ZN15LinuxAIOHandler4pollEPP10fil_node_tPPvP9IORequest+0xf2) 
+                [sp=0x7f4710ff88b0]
+[tracer] 0x562534d99176 : (_Z14os_aio_handlermPP10fil_node_tPPvP9IORequest+0xa6) 
+                [sp=0x7f4710ff8af0]
+[tracer] 0x56253506384a : (_Z12fil_aio_waitm+0x6a) 
+                [sp=0x7f4710ff8b60]
+[tracer] 0x562534e54a88 : (_ZL17io_handler_threadm+0x28) 
+                [sp=0x7f4710ff8c00]
+[tracer] 0x562534e54b98 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvmEmEEEEE6_M_runEv+0xc8) 
+                [sp=0x7f4710ff8c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f4710ff8ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f4710ff8d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f4710ff8dc0]
+1469429
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f4703d1b640]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f4703d1b720]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f4703d1b8f0]
+[tracer] 0x562534f59b3f : (_ZL33buf_flush_page_coordinator_threadv+0xd8f) 
+                [sp=0x7f4703d1b940]
+[tracer] 0x562534d54aa4 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvvEEEEEE6_M_runEv+0xc4) 
+                [sp=0x7f4703d1dc20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f4703d1dce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f4703d1dd00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f4703d1ddc0]
+1469431
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f4700d19840]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f4700d19920]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f4700d19af0]
+[tracer] 0x562534d24270 : (_Z16log_checkpointerP5log_t+0x670) 
+                [sp=0x7f4700d19b40]
+[tracer] 0x562534d454e8 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvP5log_tES5_EEEEE6_M_runEv+0xc8) 
+                [sp=0x7f4700d19c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f4700d19ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f4700d19d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f4700d19dc0]
+1469432
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f4700518800]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f47005188e0]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f4700518ab0]
+[tracer] 0x562534d7a429 : (_Z18log_flush_notifierP5log_t+0x589) 
+                [sp=0x7f4700518b00]
+[tracer] 0x562534d454e8 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvP5log_tES5_EEEEE6_M_runEv+0xc8) 
+                [sp=0x7f4700518c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f4700518ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f4700518d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f4700518dc0]
+1469433
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f46ffd17810]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f46ffd178f0]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f46ffd17ac0]
+[tracer] 0x562534d79207 : (_Z11log_flusherP5log_t+0x547) 
+                [sp=0x7f46ffd17b10]
+[tracer] 0x562534d454e8 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvP5log_tES5_EEEEE6_M_runEv+0xc8) 
+                [sp=0x7f46ffd17c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46ffd17ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46ffd17d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46ffd17dc0]
+1469434
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f46ff516810]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f46ff5168f0]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f46ff516ac0]
+[tracer] 0x562534d7b3e9 : (_Z18log_write_notifierP5log_t+0x579) 
+                [sp=0x7f46ff516b10]
+[tracer] 0x562534d454e8 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvP5log_tES5_EEEEE6_M_runEv+0xc8) 
+                [sp=0x7f46ff516c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46ff516ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46ff516d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46ff516dc0]
+1469435
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f46fed157d0]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f46fed158b0]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f46fed15a80]
+[tracer] 0x562534d809f1 : (_Z10log_writerP5log_t+0x7d1) 
+                [sp=0x7f46fed15ad0]
+[tracer] 0x562534d454e8 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvP5log_tES5_EEEEE6_M_runEv+0xc8) 
+                [sp=0x7f46fed15c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46fed15ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46fed15d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46fed15dc0]
+1469436
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f46fe514850]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f46fe514930]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f46fe514b00]
+[tracer] 0x562534d3ca65 : (_Z18log_files_governorP5log_t+0x375) 
+                [sp=0x7f46fe514b50]
+[tracer] 0x562534d454e8 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvP5log_tES5_EEEEE6_M_runEv+0xc8) 
+                [sp=0x7f46fe514c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46fe514ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46fe514d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46fe514dc0]
+1469441
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f46fd512750]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f46fd512830]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f46fd512a00]
+[tracer] 0x562534d19fa4 : (_Z24lock_wait_timeout_threadv+0xf24) 
+                [sp=0x7f46fd512a50]
+[tracer] 0x562534d54aa4 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvvEEEEEE6_M_runEv+0xc4) 
+                [sp=0x7f46fd512c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46fd512ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46fd512d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46fd512dc0]
+1469442
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f47015186a0]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f4701518780]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f4701518950]
+[tracer] 0x562534e4a9c5 : (_Z24srv_error_monitor_threadv+0x145) 
+                [sp=0x7f47015189a0]
+[tracer] 0x562534d54aa4 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvvEEEEEE6_M_runEv+0xc4) 
+                [sp=0x7f470151ac20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f470151ace0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f470151ad00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f470151adc0]
+1469443
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f46fcd11860]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f46fcd11940]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f46fcd11b10]
+[tracer] 0x562534e53fa6 : (_Z18srv_monitor_threadv+0x66) 
+                [sp=0x7f46fcd11b60]
+[tracer] 0x562534d54aa4 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvvEEEEEE6_M_runEv+0xc4) 
+                [sp=0x7f46fcd11c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46fcd11ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46fcd11d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46fcd11dc0]
+1469444
+[tracer] 0x7f47285d6376 : (pthread_cond_wait+0x216) 
+                [sp=0x7f46fdd13950]
+[tracer] 0x562534d9fb76 : (_ZN8os_event8wait_lowEl+0x46) 
+                [sp=0x7f46fdd13a20]
+[tracer] 0x562534f32adb : (_Z17buf_resize_threadv+0x4b) 
+                [sp=0x7f46fdd13a50]
+[tracer] 0x562534d54aa4 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvvEEEEEE6_M_runEv+0xc4) 
+                [sp=0x7f46fdd13c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46fdd13ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46fdd13d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46fdd13dc0]
+1469445
+[tracer] 0x7f472815e23f : (clock_nanosleep+0xdf) 
+                [sp=0x7f46e7ffeb20]
+[tracer] 0x7f4728163ec7 : (nanosleep+0x17) 
+                [sp=0x7f46e7ffeb90]
+[tracer] 0x562534e4ede5 : (_Z17srv_master_threadv+0x2d5) 
+                [sp=0x7f46e7ffeba0]
+[tracer] 0x562534d54aa4 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvvEEEEEE6_M_runEv+0xc4) 
+                [sp=0x7f46e7ffec20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46e7ffece0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46e7ffed00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46e7ffedc0]
+1469446
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f46e77fd850]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f46e77fd930]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f46e77fdb00]
+[tracer] 0x562535026b2e : (_Z17dict_stats_threadv+0x6e) 
+                [sp=0x7f46e77fdb50]
+[tracer] 0x562534d54aa4 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvvEEEEEE6_M_runEv+0xc4) 
+                [sp=0x7f46e77fdc20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46e77fdce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46e77fdd00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46e77fddc0]
+1469447
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f46e6ffc5e0]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f46e6ffc6c0]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f46e6ffc890]
+[tracer] 0x562534ec4092 : (_Z19ib_wqueue_timedwaitP11ib_wqueue_tNSt6chrono8durationIlSt5ratioILl1ELl1000000EEEE+0x292) 
+                [sp=0x7f46e6ffc8e0]
+[tracer] 0x5625350b1bf7 : (_ZL19fts_optimize_threadP11ib_wqueue_t+0x257) 
+                [sp=0x7f46e6ffc9a0]
+[tracer] 0x5625350a7aa8 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvP11ib_wqueue_tES5_EEEEE6_M_runEv+0xc8) 
+                [sp=0x7f46e6ffcc20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46e6ffcce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46e6ffcd00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46e6ffcdc0]
+1469448
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f471990ea10]
+[tracer] 0x5625354c0355 : (_ZN3xpl4Cond10timed_waitERNS_5MutexEy+0x55) 
+                [sp=0x7f471990eaf0]
+[tracer] 0x5625354e37cf : (_ZN3ngs17Scheduler_dynamic31wait_if_idle_then_delete_workerERy+0x1bf) 
+                [sp=0x7f471990eb80]
+[tracer] 0x5625354e44fd : (_ZN3ngs17Scheduler_dynamic6workerEv+0x1bd) 
+                [sp=0x7f471990ec20]
+[tracer] 0x5625353d029d : (pfs_spawn_thread+0xed) 
+                [sp=0x7f471990ecd0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f471990ed00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f471990edc0]
+1469449
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f4718107a10]
+[tracer] 0x5625354c0355 : (_ZN3xpl4Cond10timed_waitERNS_5MutexEy+0x55) 
+                [sp=0x7f4718107af0]
+[tracer] 0x5625354e37cf : (_ZN3ngs17Scheduler_dynamic31wait_if_idle_then_delete_workerERy+0x1bf) 
+                [sp=0x7f4718107b80]
+[tracer] 0x5625354e44fd : (_ZN3ngs17Scheduler_dynamic6workerEv+0x1bd) 
+                [sp=0x7f4718107c20]
+[tracer] 0x5625353d029d : (pfs_spawn_thread+0xed) 
+                [sp=0x7f4718107cd0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f4718107d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f4718107dc0]
+1469450
+[tracer] 0x7f47281a046e : (epoll_wait+0x5e) 
+                [sp=0x7f47107f7a70]
+[tracer] 0x56253552b2d5 : (epoll_dispatch+0x105) 
+                [sp=0x7f47107f7aa0]
+[tracer] 0x562535521ea8 : (event_base_loop+0x1c8) 
+                [sp=0x7f47107f7b20]
+[tracer] 0x562535476552 : (_ZN3ngs6Server8run_taskESt10shared_ptrIN3xpl5iface11Server_taskEE+0x42) 
+                [sp=0x7f47107f7bb0]
+[tracer] 0x562535476c51 : (_ZNSt17_Function_handlerIFvvEZN3ngs6Server11start_tasksEvEUlvE_E9_M_invokeERKSt9_Any_data+0x51) 
+                [sp=0x7f47107f7be0]
+[tracer] 0x5625354e47b2 : (_ZN3ngs17Scheduler_dynamic6workerEv+0x472) 
+                [sp=0x7f47107f7c20]
+[tracer] 0x5625353d029d : (pfs_spawn_thread+0xed) 
+                [sp=0x7f47107f7cd0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f47107f7d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f47107f7dc0]
+1469458
+[tracer] 0x7f47285d6376 : (pthread_cond_wait+0x216) 
+                [sp=0x7f471b730b00]
+[tracer] 0x562534d9fb76 : (_ZN8os_event8wait_lowEl+0x46) 
+                [sp=0x7f471b730bd0]
+[tracer] 0x562534f4d053 : (_Z15buf_dump_threadv+0x73) 
+                [sp=0x7f471b730c00]
+[tracer] 0x562534d54aa4 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvvEEEEEE6_M_runEv+0xc4) 
+                [sp=0x7f471b730c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f471b730ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f471b730d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f471b730dc0]
+1469459
+[tracer] 0x7f47285d67d1 : (pthread_cond_timedwait+0x271) 
+                [sp=0x7f46e67fb720]
+[tracer] 0x562534da087a : (_ZN8os_event10timed_waitEPK8timespec+0x3a) 
+                [sp=0x7f46e67fb800]
+[tracer] 0x562534da0a11 : (_ZN8os_event13wait_time_lowENSt6chrono8durationIlSt5ratioILl1ELl1000000EEEEl+0x81) 
+                [sp=0x7f46e67fb9d0]
+[tracer] 0x562534fb582f : (_ZN18Clone_persist_gtid14periodic_writeEv+0x9f) 
+                [sp=0x7f46e67fba20]
+[tracer] 0x562534fb0b58 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvP18Clone_persist_gtidES5_EEEEE6_M_runEv+0xc8) 
+                [sp=0x7f46e67fbc20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46e67fbce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46e67fbd00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46e67fbdc0]
+1469460
+[tracer] 0x7f47285d6376 : (pthread_cond_wait+0x216) 
+                [sp=0x7f46e5ffaa30]
+[tracer] 0x562534d9fb76 : (_ZN8os_event8wait_lowEl+0x46) 
+                [sp=0x7f46e5ffab00]
+[tracer] 0x562534e4f779 : (_Z28srv_purge_coordinator_threadv+0x319) 
+                [sp=0x7f46e5ffab30]
+[tracer] 0x562534d54aa4 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvvEEEEEE6_M_runEv+0xc4) 
+                [sp=0x7f46e5ffac20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46e5fface0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46e5ffad00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46e5ffadc0]
+1469461
+[tracer] 0x7f47285d6376 : (pthread_cond_wait+0x216) 
+                [sp=0x7f46e57f9a60]
+[tracer] 0x562534d9fb76 : (_ZN8os_event8wait_lowEl+0x46) 
+                [sp=0x7f46e57f9b30]
+[tracer] 0x562534e512b3 : (_Z17srv_worker_threadv+0x353) 
+                [sp=0x7f46e57f9b60]
+[tracer] 0x562534d54aa4 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvvEEEEEE6_M_runEv+0xc4) 
+                [sp=0x7f46e57f9c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46e57f9ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46e57f9d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46e57f9dc0]
+1469462
+[tracer] 0x7f47285d6376 : (pthread_cond_wait+0x216) 
+                [sp=0x7f46e4ff8a60]
+[tracer] 0x562534d9fb76 : (_ZN8os_event8wait_lowEl+0x46) 
+                [sp=0x7f46e4ff8b30]
+[tracer] 0x562534e512b3 : (_Z17srv_worker_threadv+0x353) 
+                [sp=0x7f46e4ff8b60]
+[tracer] 0x562534d54aa4 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvvEEEEEE6_M_runEv+0xc4) 
+                [sp=0x7f46e4ff8c20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46e4ff8ce0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46e4ff8d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46e4ff8dc0]
+1469463
+[tracer] 0x7f47285d6376 : (pthread_cond_wait+0x216) 
+                [sp=0x7f46d7ffea60]
+[tracer] 0x562534d9fb76 : (_ZN8os_event8wait_lowEl+0x46) 
+                [sp=0x7f46d7ffeb30]
+[tracer] 0x562534e512b3 : (_Z17srv_worker_threadv+0x353) 
+                [sp=0x7f46d7ffeb60]
+[tracer] 0x562534d54aa4 : (_ZNSt6thread11_State_implINS_8_InvokerISt5tupleIJ15Detached_threadPFvvEEEEEE6_M_runEv+0xc4) 
+                [sp=0x7f46d7ffec20]
+[tracer] 0x7f47284b5de4 : (_ZNKSt10error_code23default_error_conditionEv+0x34) 
+                [sp=0x7f46d7ffece0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46d7ffed00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46d7ffedc0]
+1469470
+[tracer] 0x7f47285d6376 : (pthread_cond_wait+0x216) 
+                [sp=0x7f47106f66b0]
+[tracer] 0x562533dcf2a1 : (_ZN11Event_queue9cond_waitEP3THDP8timespecPK17PSI_stage_info_v1PKcS8_j+0x1f1) 
+                [sp=0x7f47106f6780]
+[tracer] 0x562533dcf77f : (_ZN11Event_queue29get_top_for_execution_if_timeEP3THDPP28Event_queue_element_for_exec+0x36f) 
+                [sp=0x7f47106f6820]
+[tracer] 0x562533dd25fb : (_ZN15Event_scheduler3runEP3THD+0x19b) 
+                [sp=0x7f47106f68b0]
+[tracer] 0x562533dd2c5a : (event_scheduler_thread+0xea) 
+                [sp=0x7f47106f6c80]
+[tracer] 0x5625353d029d : (pfs_spawn_thread+0xed) 
+                [sp=0x7f47106f6cd0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f47106f6d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f47106f6dc0]
+1469471
+[tracer] 0x7f47280c51a2 : (__sigtimedwait+0xa2) 
+                [sp=0x7f47105f4af0]
+[tracer] 0x56253378741b : (signal_hand+0x1eb) 
+                [sp=0x7f47105f4b20]
+[tracer] 0x5625353d029d : (pfs_spawn_thread+0xed) 
+                [sp=0x7f47105f4cd0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f47105f4d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f47105f4dc0]
+1469472
+[tracer] 0x7f47285d6376 : (pthread_cond_wait+0x216) 
+                [sp=0x7f47104f2980]
+[tracer] 0x5625354c0280 : (_ZN3xpl4Cond4waitERNS_5MutexE+0x40) 
+                [sp=0x7f47104f2a50]
+[tracer] 0x5625354d22d5 : (_ZN3xpl11Broker_task29wait_for_data_and_swap_queuesEPSt5queueIN3ngs17Notice_descriptorENSt7__cxx114listIS3_SaIS3_EEEE+0xf5) 
+                [sp=0x7f47104f2ac0]
+[tracer] 0x5625354d2ad1 : (_ZN3xpl11Broker_task4loopEv+0x41) 
+                [sp=0x7f47104f2b60]
+[tracer] 0x562535476552 : (_ZN3ngs6Server8run_taskESt10shared_ptrIN3xpl5iface11Server_taskEE+0x42) 
+                [sp=0x7f47104f2bb0]
+[tracer] 0x562535476c51 : (_ZNSt17_Function_handlerIFvvEZN3ngs6Server11start_tasksEvEUlvE_E9_M_invokeERKSt9_Any_data+0x51) 
+                [sp=0x7f47104f2be0]
+[tracer] 0x5625354e47b2 : (_ZN3ngs17Scheduler_dynamic6workerEv+0x472) 
+                [sp=0x7f47104f2c20]
+[tracer] 0x5625353d029d : (pfs_spawn_thread+0xed) 
+                [sp=0x7f47104f2cd0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f47104f2d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f47104f2dc0]
+1469474
+[tracer] 0x7f47285d6376 : (pthread_cond_wait+0x216) 
+                [sp=0x7f46d77fdb80]
+[tracer] 0x5625347d3c43 : (compress_gtid_table+0x133) 
+                [sp=0x7f46d77fdc50]
+[tracer] 0x5625353d029d : (pfs_spawn_thread+0xed) 
+                [sp=0x7f46d77fdcd0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46d77fdd00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46d77fddc0]
+1469769
+[tracer] 0x7f47285da3cc : (read+0x4c) 
+                [sp=0x7f47102efe60]
+[tracer] 0x7f47287463d9 : (BIO_sock_should_retry+0x69) 
+                [sp=0x7f47102efe90]
+[tracer] 0x7f472874167e : (BIO_number_written+0xce) 
+                [sp=0x7f47102efec0]
+[tracer] 0x7f47287404d4 : (ERR_load_BIO_strings+0x1a4) 
+                [sp=0x7f47102efed0]
+[tracer] 0x7f4728740aa7 : (BIO_read+0x27) 
+                [sp=0x7f47102eff00]
+[tracer] 0x7f4728992b91 : (SSL_rstate_string+0x291) 
+                [sp=0x7f47102eff20]
+[tracer] 0x7f47289975b6 : (SSL_rstate_string+0x4cb6) 
+                [sp=0x7f47102eff80]
+[tracer] 0x7f47289946d0 : (SSL_rstate_string+0x1dd0) 
+                [sp=0x7f47102f00a0]
+[tracer] 0x7f472899bc45 : (SSL_rstate_string+0x9345) 
+                [sp=0x7f47102f0150]
+[tracer] 0x7f47289a6a3f : (SSL_get_default_timeout+0x8f) 
+                [sp=0x7f47102f01a0]
+[tracer] 0x7f47289a6b47 : (SSL_read+0x27) 
+                [sp=0x7f47102f0210]
+[tracer] 0x56253557e4e3 : (_Z12vio_ssl_readP3VioPhm+0x83) 
+                [sp=0x7f47102f0230]
+[tracer] 0x5625339f0246 : (_ZL17net_read_raw_loopP3NETm+0x86) 
+                [sp=0x7f47102f02a0]
+[tracer] 0x5625339f0871 : (_ZL15net_read_packetP3NETPm+0x81) 
+                [sp=0x7f47102f03e0]
+[tracer] 0x5625339f0b4f : (_Z11my_net_readP3NET+0x16f) 
+                [sp=0x7f47102f0440]
+[tracer] 0x562533d3b150 : (_ZN16Protocol_classic11read_packetEv+0x20) 
+                [sp=0x7f47102f04d0]
+[tracer] 0x562533d3df60 : (_ZN16Protocol_classic11get_commandEP8COM_DATAP19enum_server_command+0x20) 
+                [sp=0x7f47102f04f0]
+[tracer] 0x5625338b0712 : (_Z10do_commandP3THD+0x102) 
+                [sp=0x7f47102f0520]
+[tracer] 0x562533a06c88 : (handle_connection+0x268) 
+                [sp=0x7f47102f0c40]
+[tracer] 0x5625353d029d : (pfs_spawn_thread+0xed) 
+                [sp=0x7f47102f0cd0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f47102f0d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f47102f0dc0]
+1469858
+[tracer] 0x56253386fe84 : (_ZN4JOIN32create_root_access_path_for_joinEv+0x1ac4) 
+                [sp=0x7f47101ec500]
+[tracer] 0x5625338704f5 : (_ZN4JOIN19create_access_pathsEv+0x15) 
+                [sp=0x7f47101ec600]
+[tracer] 0x5625338a06fe : (_ZN4JOIN8optimizeEb+0x209e) 
+                [sp=0x7f47101ec620]
+[tracer] 0x562533905231 : (_ZN11Query_block8optimizeEP3THDb+0xc1) 
+                [sp=0x7f47101ec960]
+[tracer] 0x56253397f449 : (_ZN16Query_expression8optimizeEP3THDP5TABLEbb+0xb9) 
+                [sp=0x7f47101ec9f0]
+[tracer] 0x562533903fc4 : (_ZN11Sql_cmd_dml13execute_innerEP3THD+0x34) 
+                [sp=0x7f47101ecaa0]
+[tracer] 0x56253390c306 : (_ZN11Sql_cmd_dml7executeEP3THD+0x186) 
+                [sp=0x7f47101ecad0]
+[tracer] 0x5625338a84a7 : (_Z21mysql_execute_commandP3THDb+0xaf7) 
+                [sp=0x7f47101ecb90]
+[tracer] 0x5625338ad260 : (_Z20dispatch_sql_commandP3THDP12Parser_state+0x4d0) 
+                [sp=0x7f47101edab0]
+[tracer] 0x5625338af50f : (_Z16dispatch_commandP3THDPK8COM_DATA19enum_server_command+0x1d2f) 
+                [sp=0x7f47101edb60]
+[tracer] 0x5625338b0817 : (_Z10do_commandP3THD+0x207) 
+                [sp=0x7f47101ee520]
+[tracer] 0x562533a06c88 : (handle_connection+0x268) 
+                [sp=0x7f47101eec40]
+[tracer] 0x5625353d029d : (pfs_spawn_thread+0xed) 
+                [sp=0x7f47101eecd0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f47101eed00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f47101eedc0]
+1469859
+[tracer] 0x562533a28380 : (_Z10MYSQLparseP3THDPP15Parse_tree_root+0x790) 
+                [sp=0x7f46fc50da20]
+[tracer] 0x562533819b51 : (_ZN3THD10sql_parserEv+0x31) 
+                [sp=0x7f46fc50fa10]
+[tracer] 0x5625338a6529 : (_Z9parse_sqlP3THDP12Parser_stateP19Object_creation_ctx+0x129) 
+                [sp=0x7f46fc50fa40]
+[tracer] 0x5625338acfb5 : (_Z20dispatch_sql_commandP3THDP12Parser_state+0x225) 
+                [sp=0x7f46fc50fab0]
+[tracer] 0x5625338af50f : (_Z16dispatch_commandP3THDPK8COM_DATA19enum_server_command+0x1d2f) 
+                [sp=0x7f46fc50fb60]
+[tracer] 0x5625338b0817 : (_Z10do_commandP3THD+0x207) 
+                [sp=0x7f46fc510520]
+[tracer] 0x562533a06c88 : (handle_connection+0x268) 
+                [sp=0x7f46fc510c40]
+[tracer] 0x5625353d029d : (pfs_spawn_thread+0xed) 
+                [sp=0x7f46fc510cd0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46fc510d00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46fc510dc0]
+1469860
+[tracer] 0x7f4728193a96 : (ppoll+0xa6) 
+                [sp=0x7f46fc40e100]
+[tracer] 0x56253557d3bc : (_Z11vio_io_waitP3Vio17enum_vio_io_eventi+0x19c) 
+                [sp=0x7f46fc40e150]
+[tracer] 0x56253557d466 : (_Z18vio_socket_io_waitP3Vio17enum_vio_io_event+0x16) 
+                [sp=0x7f46fc40e220]
+[tracer] 0x56253557e4d1 : (_Z12vio_ssl_readP3VioPhm+0x71) 
+                [sp=0x7f46fc40e230]
+[tracer] 0x5625339f0246 : (_ZL17net_read_raw_loopP3NETm+0x86) 
+                [sp=0x7f46fc40e2a0]
+[tracer] 0x5625339f0871 : (_ZL15net_read_packetP3NETPm+0x81) 
+                [sp=0x7f46fc40e3e0]
+[tracer] 0x5625339f0b4f : (_Z11my_net_readP3NET+0x16f) 
+                [sp=0x7f46fc40e440]
+[tracer] 0x562533d3b150 : (_ZN16Protocol_classic11read_packetEv+0x20) 
+                [sp=0x7f46fc40e4d0]
+[tracer] 0x562533d3df60 : (_ZN16Protocol_classic11get_commandEP8COM_DATAP19enum_server_command+0x20) 
+                [sp=0x7f46fc40e4f0]
+[tracer] 0x5625338b0712 : (_Z10do_commandP3THD+0x102) 
+                [sp=0x7f46fc40e520]
+[tracer] 0x562533a06c88 : (handle_connection+0x268) 
+                [sp=0x7f46fc40ec40]
+[tracer] 0x5625353d029d : (pfs_spawn_thread+0xed) 
+                [sp=0x7f46fc40ecd0]
+[tracer] 0x7f47285cf609 : (start_thread+0xd9) 
+                [sp=0x7f46fc40ed00]
+[tracer] 0x7f47281a0133 : (clone+0x43) 
+                [sp=0x7f46fc40edc0]
+-----------------------------------
+
+[tracer] thread id = 1469415, rip = 7f472819399f
+[tracer] before SINGLESTEP, set RIP = 7f4728a32d67 (lib addr)
+[tracer] receive SIGSTOP from tracee (lib code), tracee finished a SINGLESTEP!
+[tracer] after SINGLESTEP, RIP = 7f4728a32d66
+---------------------------------
+[tracer] thread id = 1469419, rip = 7f472819973d
+[tracer] before SINGLESTEP, set RIP = 7f4728a32d67 (lib addr)
+[tracer] receive SIGSTOP from tracee (lib code), tracee finished a SINGLESTEP!
+[tracer] after SINGLESTEP, RIP = 7f4728a32d6b
+[tracer] after a PTRACE_SINGLESTEP, do a PTRACE_CONT
+[tracer] connection from 127.0.0.1
+[tracer][error] thread 1469419 delivers a non-SIGSTOP signal
+[tracer][error] tracee exits normally, exit num = 255
